@@ -1,5 +1,5 @@
 <?php
-namespace StasDovgodko\Uri;
+namespace StasDovgodko;
 
 use Psr\Http\Message\UriInterface;
 

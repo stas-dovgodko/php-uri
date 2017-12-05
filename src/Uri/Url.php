@@ -1,8 +1,7 @@
 <?php
 namespace StasDovgodko\Uri;
 
-
-use Psr\Http\Message\UriInterface;
+use StasDovgodko\Uri;
 
 /**
  * Represents a Uniform Resource Identifier (URI) reference.
@@ -14,7 +13,7 @@ use Psr\Http\Message\UriInterface;
  * Instances of this class are immutable.
  *
  */
-class Url extends Uri implements UriInterface
+class Url extends Uri
 {
     /**
      * Push value to query encoded

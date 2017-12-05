@@ -1,6 +1,7 @@
 <?php
 namespace StasDovgodko\Uri;
 
+use StasDovgodko\Uri;
 
 /**
  * Represents a Uniform Resource Identifier (URI) reference.
