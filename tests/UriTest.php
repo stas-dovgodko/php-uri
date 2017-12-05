@@ -2,7 +2,7 @@
 
 namespace StasDovgodko\Uri\Tests;
 
-use StasDovgodko\Uri\Uri;
+use StasDovgodko\Uri;
 
 class UriTest extends \PHPUnit_Framework_TestCase
 {
