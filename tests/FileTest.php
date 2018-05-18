@@ -2,9 +2,19 @@
 namespace StasDovgodko\Uri\Tests;
 
 use StasDovgodko\Uri\File;
+use PHPUnit\Framework\TestCase;
 
-class FileTest extends \PHPUnit_Framework_TestCase
+class FileTest extends TestCase
 {
+
+    public function testGetExtension()
+    {
+        $file = new File('file://server/share/My%20Documents%20100%2520/foo.txt');
+        $this->assertEquals('txt', $file->getExtension());
+
+        $file = new File('file://server/share/My%20Documents%20100%2520/foo');
+        $this->assertNull($file->getExtension());
+    }
 
     public function testWinShare()
     {
