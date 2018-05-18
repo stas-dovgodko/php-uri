@@ -3,9 +3,90 @@
 namespace StasDovgodko\Uri\Tests;
 
 use StasDovgodko\Uri;
+use PHPUnit\Framework\TestCase;
 
-class UriTest extends \PHPUnit_Framework_TestCase
+class UriTest extends TestCase
 {
+
+    public function testNormalizeOnThisInstance()
+    {
+        $uri = new Uri('http://domain.name');
+        $normalize = $uri->normalize();
+        $this->assertInstanceOf(Uri::class, $normalize);
+    }
+
+    public function testGetPort()
+    {
+        $uri = new Uri('http://domain.name:8000');
+        $this->assertEquals(8000, $uri->getPort());
+    }
+
+    public function testWithScheme()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withScheme('ftp');
+        $this->assertEquals('ftp', $result->getScheme());
+    }
+
+    public function testWithUserInfo()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withUserInfo('username', 'password');
+        $this->assertEquals('username:password@domain.name:5000', $result->getAuthority());
+    }
+
+    public function testWithHost()
+    {
+        $uri = new Uri('http://domain.name');
+        $result = $uri->withHost('host.name');
+        $this->assertEquals('host.name', $result->getHost());
+    }
+
+    public function testWithPort()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withPort(8000);
+        $this->assertEquals(8000, $result->getPort());
+    }
+
+    public function testWithPath()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withPath('/path/to');
+        $this->assertEquals('/path/to', $result->getPath());
+    }
+
+    public function testWithQuery()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withQuery('param=value&param2=value2');
+        $this->assertEquals('param=value&param2=value2', $result->getQuery());
+    }
+
+    public function testWithFragment()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $result = $uri->withFragment('#index');
+        $this->assertEquals('#index', $result->getFragment());
+    }
+
+    public function testIsOrigin()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $this->assertFalse($uri->isOrigin());
+    }
+
+    public function testIsAuthority()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $this->assertFalse($uri->isAuthority());
+    }
+
+    public function testIsAsterisk()
+    {
+        $uri = new Uri('http://domain.name:5000');
+        $this->assertFalse($uri->isAsterisk());
+    }
 
     public function testUrn()
     {

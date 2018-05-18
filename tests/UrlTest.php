@@ -1,11 +1,11 @@
 <?php
 
-
+namespace StasDovgodko\Uri\Tests;
 
 use StasDovgodko\Uri\Url;
+use PHPUnit\Framework\TestCase;
 
-
-class UrlTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends TestCase
 {
 
     public function testWithQueryValue()
@@ -18,6 +18,13 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         $this->assertNotSame($url, $url2);
     }
 
+    public function testWithQueryValuesOnNull()
+    {
+        $url = new Url('');
+        $url2 = $url->withQueryValues(['x3' => 'v3']);
+
+        $this->assertNotSame($url, $url2);
+    }
 
     public function testWithQueryValues()
     {
